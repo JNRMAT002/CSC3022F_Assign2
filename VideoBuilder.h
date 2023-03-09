@@ -25,6 +25,18 @@ namespace JNRMAT002 {
         // Destructor for FrameSequence
         ~FrameSequence();
 
+        // none | invert | reverse | revinvert
+        void setOperation(std::string operation);
+
+        // All operations HERE *****************
+        void none();
+        void invert();
+        void reverse();
+        void revinvert();
+
+        // Set name of output file
+        void setOutputName(std::string fileName);
+
 
         
     private:
