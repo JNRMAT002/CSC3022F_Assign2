@@ -55,6 +55,6 @@ int main(int argc, char* argv[]) {
         // std::cout << argv[i] << std::endl;
     }
 
-    std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
+    // std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
     return 0;
 }

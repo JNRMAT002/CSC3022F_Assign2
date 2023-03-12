@@ -1,6 +1,7 @@
 /*
     Matthew January JNRMAT002
     Header file for video builder assignment (Assignment 2)
+    FrameSequence Class definition
 */
 #ifndef MY_VIDEO_BLDR_H
 #define MY_VIDEO_BLDR_H
