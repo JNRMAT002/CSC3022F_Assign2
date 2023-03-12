@@ -14,7 +14,7 @@ namespace JNRMAT002 {
     public:        
         std::vector<unsigned char **> imageSequence;
         int X1, Y1, X2, Y2, width, height;
-        std::string operation, fileName;
+        std::string operation, outputPGMFile;
 
         // Default Constructor for FrameSequence
         FrameSequence(void);
@@ -35,7 +35,7 @@ namespace JNRMAT002 {
         void revinvert();
 
         // Set name of output file
-        void setOutputName(std::string fileName);
+        void setOutputName(std::string outputPGMFile);
 
 
         
