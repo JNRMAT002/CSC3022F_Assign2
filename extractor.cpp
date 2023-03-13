@@ -18,6 +18,10 @@ int main(int argc, char* argv[]) {
     int width, height;
     std::string operation, outputPGMFile;
 
+    int count = 0; // To Count number of operations
+
+    std::vector<unsigned char**> outputVec;
+
     // std::cout << "You passed " << argc - 1 << " arguments:" << std::endl;
 
     inputPGMFile = argv[1];
@@ -60,18 +64,45 @@ int main(int argc, char* argv[]) {
             /*
                 SOME CODE HERE TO EXECUTE OPERATION FROM INPUT ARGUMENTS
             */
+                        
 
-            unsigned char** imgData = frameSequence.readInputFile(inputPGMFile);
-            frameSequence.imageSequence.push_back( frameSequence.storeFrames(X1, Y1, width, height, imgData) );
-            // std::cout << frameSequence.imageSequence.size() << std::endl;
+        }
+            
            
+    }
+
+    unsigned char** imgData = frameSequence.readInputFile(inputPGMFile);
+
+    // Storing frames in imageSequence
+    while (X1 != X2 && Y1 != Y2) {
+
+        frameSequence.imageSequence.push_back( frameSequence.storeFrames(X1, Y1, width, height, imgData) );
+        if(X1<X2) {
+            X1++;
+        }
+        if(Y1<Y2) {
+            Y1++;
+        }
+        if(X2<X1) {
+            X1--;
+        }
+        if(Y2<Y1) {
+            Y1--;
         }
         
         // std::cout << argv[i] << std::endl;
     }
 
+    
+
+    if (operation == "none") {
+        frameSequence.writeOutputFile(frameSequence.imageSequence);
+    }
+    
+    
 
 
-    std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
+    // std::cout << frameSequence.imageSequence.size() << std::endl;
+    // std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
     return 0;
 }

@@ -10,7 +10,8 @@ if [ $DEBUG -eq 0 ]; then
    set -x
 fi
 
-EXE_NAME="extractor"
+# Modified EXE_NAME to include .exe file extension as it was not running before
+EXE_NAME="extractor.exe"
 IMAGE="sloan_image.pgm"
 
 FRAME_SRC="."
@@ -88,8 +89,8 @@ create_frame_sequence()
             mv $file "$2/$(printf %05d $count).pgm"
             ((count++))
          done
-         echo "ffmpeg -y -framerate $FRAME_RATE -i $2/%05d.pgm -pix_fmt rgb24 -vcodec png $2.mp4"
-         ffmpeg -y -framerate $FRAME_RATE -i "$2/%05d.pgm" -pix_fmt rgb24 -vcodec png $2.mp4
+         echo "ffmpeg.exe -y -framerate $FRAME_RATE -i $2/%05d.pgm -pix_fmt rgb24 -vcodec png $2.mp4"
+         ffmpeg.exe -y -framerate $FRAME_RATE -i "$2/%05d.pgm" -pix_fmt rgb24 -vcodec png $2.mp4
 
          if [ $KEEP_FRAMES -eq 1 ]; then
             rm -rf $2

@@ -28,6 +28,13 @@ namespace JNRMAT002{
             delete[] pixels[i];
         }
         delete[] pixels;
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                delete[] imageSequence[i][j];
+            }
+            delete[] imageSequence[i];
+        }
     }
 
     // Set start and end points for trajectory
@@ -102,22 +109,32 @@ namespace JNRMAT002{
                         inputFile >> pixels[i][j];
                     }
                 }
-
-                // inputFile.read( (char*)pixels[0], imgWidth * imgHeight );
                 // std::cout << "TEST" << std::endl;
-                // break;            
             }            
             
         }
 
         inputFile.close();
         return pixels;
-        // storeFrames(X1, Y1, width, height, pixels);
-
-    
-
     }
 
+    // Write final image sequence to output file
+    void FrameSequence::writeOutputFile(std::vector<unsigned char**> imageSequence) {
+        std::ofstream outfile(outputPGMFile + "-" + ".pgm", std::ios::out | std::ios::binary);
+
+        outfile << "P5" << std::endl;
+        outfile << width << " " << height << std::endl;
+        outfile << 255 << std::endl;
+
+        for (int i = 0; i < height; i++) {
+            outfile.write(reinterpret_cast<char *>(imageSequence[i]), width);
+        }
+
+        outfile.close();
+    }
+
+
+    // Acquire frames to be operated on from the original image data
     unsigned char** FrameSequence::storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData) {
         // std::cout << width << " " << height << " " << X1 << " " << Y1 << std::endl;
         frame = new unsigned char*[height];
@@ -132,27 +149,19 @@ namespace JNRMAT002{
         }
 
         return frame;
-        // if (imageSequence.empty()) {
-        //     std::cout << "EMPTY" << std::endl;
-        // }
-
-        // if (frame != nullptr){
-        //     imageSequence.push_back(frame);
-        // }
     }
 
-    // No change to imageSequence
-    void none() {
+    // No change to imageSequence none() function not included (done in one step without need for additional function)
 
-    }
+    // std::vector<unsigned char**> invert(std::vector<unsigned char**> imageSequence) {
 
-    void invert() {
+    // }
+    // std::vector<unsigned char**> reverse(std::vector<unsigned char**> imageSequence) {
 
-    }
-    void reverse() {
+    // }
+    // std::vector<unsigned char**> revinvert(std::vector<unsigned char**> imageSequence) {
 
-    }
-    void revinvert() {
+    // }
 
-    }
+
 }

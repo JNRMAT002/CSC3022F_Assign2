@@ -16,7 +16,8 @@ FrameSequence.o: FrameSequence.cpp
 	$(C) $(CFLAGS) -c FrameSequence.cpp
 
 run:
-	.\$(TARGET) sloan_image.pgm -t 0 0 100 100 -s 100 100 -w none SIMPLE
+	.\$(TARGET) larger_image.pgm -t 0 0 100 100 -s 100 100 -w none SIMPLE
 
 clean:
 	del /q $(OBJS) $(TARGET).exe
+	del *.pgm

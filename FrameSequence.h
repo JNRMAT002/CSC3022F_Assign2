@@ -29,6 +29,7 @@ namespace JNRMAT002 {
         void setFrameSize(int width, int height);
 
         unsigned char** readInputFile(std::string inputPGMFile);
+        void writeOutputFile(std::vector<unsigned char**> imageSequence);
 
         // none | invert | reverse | revinvert
         void setOperation(std::string operation);
@@ -40,10 +41,12 @@ namespace JNRMAT002 {
         unsigned char** storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData);
 
         // All operations HERE *****************
-        void none();
-        void invert();
-        void reverse();
-        void revinvert();
+        // std::vector<unsigned char**> none(std::vector<unsigned char**> imageSequence);
+        std::vector<unsigned char**> invert(std::vector<unsigned char**> imageSequence);
+        std::vector<unsigned char**> reverse(std::vector<unsigned char**> imageSequence);
+        std::vector<unsigned char**> revinvert(std::vector<unsigned char**> imageSequence);
+
+        
         
     };
 }
