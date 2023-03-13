@@ -20,4 +20,4 @@ run:
 
 clean:
 	del /q $(OBJS) $(TARGET).exe
-	del *.pgm
+	#del *.pgm
