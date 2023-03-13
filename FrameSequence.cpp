@@ -73,7 +73,7 @@ namespace JNRMAT002{
                 line_count = 1;
                 std::istringstream ss (line);
                 ss >> imgWidth >> std::ws >> imgHeight;
-                std::cout << imgWidth << " " << imgHeight << std::endl;
+                // std::cout << imgWidth << " " << imgHeight << std::endl;
                 break; 
             }
         }
@@ -96,7 +96,7 @@ namespace JNRMAT002{
                 }
 
                 inputFile.read( (char*)pixels[0], imgWidth * imgHeight );
-                std::cout << "SUCCESS" << std::endl;
+                // std::cout << "SUCCESS" << std::endl;
                 break;            
             }
 
