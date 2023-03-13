@@ -20,7 +20,7 @@ namespace JNRMAT002 {
 
         // Default Constructor for FrameSequence
         FrameSequence(void);
-        
+
         // Destructor for FrameSequence
         ~FrameSequence();
 
@@ -32,18 +32,14 @@ namespace JNRMAT002 {
         // none | invert | reverse | revinvert
         void setOperation(std::string operation);
 
+        // Set name of output file
+        void setOutputName(std::string outputPGMFile);
+
         // All operations HERE *****************
         void none();
         void invert();
         void reverse();
         void revinvert();
-
-        // Set name of output file
-        void setOutputName(std::string outputPGMFile);
-
-
-        
-    private:
         
     };
 }

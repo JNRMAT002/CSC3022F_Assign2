@@ -7,9 +7,12 @@
 #include <cstring> // Required to use strcmp()
 #include "FrameSequence.h"
 
-// using namespace JNRMAT002;
+using namespace JNRMAT002;
 
 int main(int argc, char* argv[]) {
+    // Initialize object of FrameSequence
+    FrameSequence frameSequence;
+
     std::string inputPGMFile;
     int X1, Y1, X2, Y2;
     int width, height;
@@ -18,6 +21,8 @@ int main(int argc, char* argv[]) {
     std::cout << "You passed " << argc - 1 << " arguments:" << std::endl;
 
     inputPGMFile = argv[1];
+
+    frameSequence.readInputFile(inputPGMFile);
 
     for (int i = 2; i < argc; i++) {
         // Get frame trajectory from input arguments
@@ -30,6 +35,8 @@ int main(int argc, char* argv[]) {
             Y2 = atoi(argv[i+4]);
 
             i = i + 4;
+
+            frameSequence.setTrajectory(X1, Y1, X2, Y2);
         }
 
         // Get size of frame from input arguments
@@ -38,6 +45,8 @@ int main(int argc, char* argv[]) {
             height = atoi(argv[i+2]);
 
             i = i + 2;
+
+            frameSequence.setFrameSize(width, height);
         }
 
         // Get required operation and output PGM filename from input arguments
@@ -47,13 +56,20 @@ int main(int argc, char* argv[]) {
 
             i = i + 2;
 
+            frameSequence.setOperation(operation);
+            frameSequence.setOutputName(outputPGMFile);
+
             /*
                 SOME CODE HERE TO EXECUTE OPERATION FROM INPUT ARGUMENTS
             */
+
+           
         }
         
         // std::cout << argv[i] << std::endl;
     }
+
+
 
     // std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
     return 0;
