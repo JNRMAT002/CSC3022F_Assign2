@@ -15,5 +15,8 @@ main.o: main.cpp
 FrameSequence.o: FrameSequence.cpp
 	$(C) $(CFLAGS) -c FrameSequence.cpp
 
+run:
+	.\$(TARGET) larger_image.pgm -t 0 10 5000 5000 -s 640 480 -w invert invseq
+
 clean:
 	del /q $(OBJS) $(TARGET).exe
