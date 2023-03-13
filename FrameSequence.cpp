@@ -55,7 +55,7 @@ namespace JNRMAT002{
     }
 
     // Read input file and store full image data in array 'pixels'
-    void FrameSequence::readInputFile(std::string inputPGMFile) {
+    unsigned char** FrameSequence::readInputFile(std::string inputPGMFile) {
         
         std::ifstream inputFile(inputPGMFile, std::ios::binary);
 
@@ -104,23 +104,22 @@ namespace JNRMAT002{
                 }
 
                 // inputFile.read( (char*)pixels[0], imgWidth * imgHeight );
-                // std::cout << "SUCCESS" << std::endl;
+                // std::cout << "TEST" << std::endl;
                 // break;            
-            }
-
-            inputFile.close();
-
+            }            
             
         }
 
+        inputFile.close();
+        return pixels;
         // storeFrames(X1, Y1, width, height, pixels);
 
     
 
     }
 
-    void FrameSequence::storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData) {
-        std::cout << width << " " << height << " " << X1 << " " << Y1 << std::endl;
+    unsigned char** FrameSequence::storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData) {
+        // std::cout << width << " " << height << " " << X1 << " " << Y1 << std::endl;
         frame = new unsigned char*[height];
 
         for (int i = 0; i < height; i++) {
@@ -132,13 +131,14 @@ namespace JNRMAT002{
 
         }
 
-        if (imageSequence.empty()) {
-            std::cout << "EMPTY" << std::endl;
-        }
+        return frame;
+        // if (imageSequence.empty()) {
+        //     std::cout << "EMPTY" << std::endl;
+        // }
 
-        if (frame != nullptr){
-            imageSequence.push_back(frame);
-        }
+        // if (frame != nullptr){
+        //     imageSequence.push_back(frame);
+        // }
     }
 
     // No change to imageSequence

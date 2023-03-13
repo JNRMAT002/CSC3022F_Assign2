@@ -28,7 +28,7 @@ namespace JNRMAT002 {
         void setTrajectory(int X1, int X2, int Y1, int Y2);
         void setFrameSize(int width, int height);
 
-        void readInputFile(std::string inputPGMFile);
+        unsigned char** readInputFile(std::string inputPGMFile);
 
         // none | invert | reverse | revinvert
         void setOperation(std::string operation);
@@ -37,7 +37,7 @@ namespace JNRMAT002 {
         void setOutputName(std::string outputPGMFile);
 
         // Capture frames for imageSequence
-        void storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData);
+        unsigned char** storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData);
 
         // All operations HERE *****************
         void none();

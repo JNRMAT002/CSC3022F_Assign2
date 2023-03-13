@@ -1,5 +1,5 @@
 C = g++
-CFLAGS = -std=c++11
+CFLAGS = -std=c++11 -static-libgcc -static-libstdc++ #INCLUDE THESE LAST TWO FLAGS ANYTIME YOU USE VECTORS
 SRCS = FrameSequence.cpp extractor.cpp
 OBJS = $(SRCS:.cpp=.o)
 TARGET = extractor

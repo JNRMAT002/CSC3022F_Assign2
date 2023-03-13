@@ -61,8 +61,9 @@ int main(int argc, char* argv[]) {
                 SOME CODE HERE TO EXECUTE OPERATION FROM INPUT ARGUMENTS
             */
 
-           frameSequence.readInputFile(inputPGMFile);
-
+            unsigned char** imgData = frameSequence.readInputFile(inputPGMFile);
+            frameSequence.imageSequence.push_back( frameSequence.storeFrames(X1, Y1, width, height, imgData) );
+            // std::cout << frameSequence.imageSequence.size() << std::endl;
            
         }
         
