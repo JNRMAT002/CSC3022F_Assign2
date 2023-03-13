@@ -14,17 +14,20 @@ namespace JNRMAT002 {
     class FrameSequence {
     public:        
         std::vector<unsigned char **> imageSequence;
+        unsigned char** pixels;
         int X1, Y1, X2, Y2, width, height;
         std::string operation, outputPGMFile;
 
         // Default Constructor for FrameSequence
         FrameSequence(void);
-
-        // Constructor for FrameSequence
-        FrameSequence(int X1, int X2, int Y1, int Y2, int width, int height);
-
+        
         // Destructor for FrameSequence
         ~FrameSequence();
+
+        void setTrajectory(int X1, int X2, int Y1, int Y2);
+        void setFrameSize(int width, int height);
+
+        void readInputFile(std::string inputPGMFile);
 
         // none | invert | reverse | revinvert
         void setOperation(std::string operation);
