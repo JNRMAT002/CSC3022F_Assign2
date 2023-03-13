@@ -18,11 +18,9 @@ int main(int argc, char* argv[]) {
     int width, height;
     std::string operation, outputPGMFile;
 
-    std::cout << "You passed " << argc - 1 << " arguments:" << std::endl;
+    // std::cout << "You passed " << argc - 1 << " arguments:" << std::endl;
 
     inputPGMFile = argv[1];
-
-    frameSequence.readInputFile(inputPGMFile);
 
     for (int i = 2; i < argc; i++) {
         // Get frame trajectory from input arguments
@@ -63,6 +61,8 @@ int main(int argc, char* argv[]) {
                 SOME CODE HERE TO EXECUTE OPERATION FROM INPUT ARGUMENTS
             */
 
+           frameSequence.readInputFile(inputPGMFile);
+
            
         }
         
@@ -71,6 +71,6 @@ int main(int argc, char* argv[]) {
 
 
 
-    // std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
+    std::cout << X1 << " " << Y1 << " " << X2 << " " << Y2 << " " << width << " " << height << " " << operation << " " << outputPGMFile << std::endl;
     return 0;
 }

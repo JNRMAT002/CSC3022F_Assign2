@@ -14,7 +14,8 @@ namespace JNRMAT002 {
     class FrameSequence {
     public:        
         std::vector<unsigned char **> imageSequence;
-        unsigned char** pixels;
+        unsigned char** pixels; // Stores original image data
+        unsigned char** frame; // Stores frame data to be stored in vector imageSequence
         int X1, Y1, X2, Y2, width, height;
         std::string operation, outputPGMFile;
 
@@ -34,6 +35,9 @@ namespace JNRMAT002 {
 
         // Set name of output file
         void setOutputName(std::string outputPGMFile);
+
+        // Capture frames for imageSequence
+        void storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData);
 
         // All operations HERE *****************
         void none();

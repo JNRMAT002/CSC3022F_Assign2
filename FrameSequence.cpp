@@ -11,7 +11,6 @@ namespace JNRMAT002{
 
     // Default Constructor
     FrameSequence::FrameSequence(void) {
-        // int X1, int X2, int Y1, int Y2, int width, int height
         X1 = 0;
         X2 = 0;
         Y1 = 0;
@@ -20,7 +19,6 @@ namespace JNRMAT002{
         height = 0;
         operation = "none";
         outputPGMFile = "";
-        
     }
 
     // Destructor
@@ -32,6 +30,7 @@ namespace JNRMAT002{
         delete[] pixels;
     }
 
+    // Set start and end points for trajectory
     void FrameSequence::setTrajectory(int X1_arg, int Y1_arg, int X2_arg, int Y2_arg) {
         X1 = X1_arg;
         Y1 = Y1_arg;
@@ -39,20 +38,25 @@ namespace JNRMAT002{
         Y2 = Y2_arg;
     }
 
+    // Set size of subframe used in imageSequence
     void FrameSequence::setFrameSize(int width_arg, int height_arg) {
         width = width_arg;
         height = height_arg;
     }
 
+    // Set operation required (i.e., none, reverse, etc.)
     void FrameSequence::setOperation(std::string operation_arg) {
         operation = operation_arg;
     }
 
+    // Set output file name
     void FrameSequence::setOutputName(std::string outputPGMFile_arg) {
         outputPGMFile = outputPGMFile_arg;
     }
 
+    // Read input file and store full image data in array 'pixels'
     void FrameSequence::readInputFile(std::string inputPGMFile) {
+        
         std::ifstream inputFile(inputPGMFile, std::ios::binary);
 
         if (!inputFile.is_open()) {
@@ -93,18 +97,49 @@ namespace JNRMAT002{
                 pixels = new unsigned char*[imgHeight];
                 for (int i = 0; i < imgHeight; i++) {
                     pixels[i] = new unsigned char[imgWidth];
+
+                    for (int j = 0; j < imgWidth; j++) {
+                        inputFile >> pixels[i][j];
+                    }
                 }
 
-                inputFile.read( (char*)pixels[0], imgWidth * imgHeight );
+                // inputFile.read( (char*)pixels[0], imgWidth * imgHeight );
                 // std::cout << "SUCCESS" << std::endl;
-                break;            
+                // break;            
             }
 
             inputFile.close();
+
+            
         }
+
+        // storeFrames(X1, Y1, width, height, pixels);
+
+    
 
     }
 
+    void FrameSequence::storeFrames(int X1, int Y1, int width, int height, unsigned char ** imgData) {
+        std::cout << width << " " << height << " " << X1 << " " << Y1 << std::endl;
+        frame = new unsigned char*[height];
+
+        for (int i = 0; i < height; i++) {
+            frame[i] = new unsigned char[width];
+
+            for (int j = 0; j < width; j++) {
+                frame[i][j] = imgData[Y1+i][X1+j];
+            }
+
+        }
+
+        if (imageSequence.empty()) {
+            std::cout << "EMPTY" << std::endl;
+        }
+
+        if (frame != nullptr){
+            imageSequence.push_back(frame);
+        }
+    }
 
     // No change to imageSequence
     void none() {
